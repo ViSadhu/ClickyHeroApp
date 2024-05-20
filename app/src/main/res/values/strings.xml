@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ClickyHero</string>
     <string name="select_a_combo">Select a Combo:</string>
-    <string name="correct_combos">Correct Combos:</string>
+    <string name="correct_combos">Correct Combos: %1$d</string>
     <string name="combo_name">Combo Name</string>
+    <string name="reset">Reset</string>
 </resources>

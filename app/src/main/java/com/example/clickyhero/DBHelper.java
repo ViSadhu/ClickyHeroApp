@@ -40,7 +40,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "('Cheetah Sprint', 'RRUR', 4, -1, -1), " +
                 "('Cheetah Jump', 'LUUDL' , 5, -1, -1), " +
                 "('Cheetah Backflip', 'ULLD', 4, -1, -1), " +
-                "('Cheetah Dive', 'DDRD', 4, -1, -1);";
+                "('Cheetah Dive', 'DDRD', 4, -1, -1), " +
+                "('Cheetah Zap', 'UDURLR', 6, -1, -1);";
 
         db.execSQL(createTblQuery);
         db.execSQL(insertTblQuery);

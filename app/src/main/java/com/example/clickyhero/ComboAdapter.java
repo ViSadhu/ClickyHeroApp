@@ -11,18 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.mainViewHolder> {
+public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.comboViewHolder> {
+    private final RecyclerViewClickListener recyclerViewClickListener;
     private final ArrayList<Combo> comboList;
-    public ComboAdapter(ArrayList<Combo> comboList) { this.comboList = comboList; }
+
+    public ComboAdapter(ArrayList<Combo> comboList, RecyclerViewClickListener recyclerViewClickListener) {
+        this.comboList = comboList;
+        this.recyclerViewClickListener = recyclerViewClickListener;
+    }
+
     @NonNull
     @Override
-    public ComboAdapter.mainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_item, parent, false);
-        return new mainViewHolder(view);
+    public comboViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.combo_item, parent, false);
+        return new comboViewHolder(view, recyclerViewClickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ComboAdapter.mainViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull comboViewHolder holder, int position) {
         holder.tvComboName.setText(comboList.get(position).getComboName());
 
         holder.ivArrow0.setImageResource(getImgResource(comboList.get(position).getSequence(), 0));
@@ -40,7 +46,7 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.mainViewHold
         return comboList.size();
     }
 
-    public int getImgResource(String sequence, int position) {
+    public static int getImgResource(String sequence, int position) {
         if (position <= sequence.length() - 1) {
             switch (sequence.charAt(position)) {
                 case 'U':
@@ -58,7 +64,7 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.mainViewHold
         return 0;
     }
 
-    public static class mainViewHolder extends RecyclerView.ViewHolder {
+    public static class comboViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvComboName = itemView.findViewById(R.id.tvComboName);
         ImageView ivArrow0 = itemView.findViewById(R.id.ivArrow0);
@@ -70,8 +76,18 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.mainViewHold
         ImageView ivArrow6 = itemView.findViewById(R.id.ivArrow6);
         ImageView ivArrow7 = itemView.findViewById(R.id.ivArrow7);
 
-        public mainViewHolder(@NonNull View itemView) {
+        public comboViewHolder(@NonNull View itemView, RecyclerViewClickListener recyclerViewClickListener) {
             super(itemView);
+
+            itemView.setOnClickListener(v -> {
+                if (recyclerViewClickListener != null) {
+                    int position = getAdapterPosition();
+
+                    if (position != RecyclerView.NO_POSITION) {
+                        recyclerViewClickListener.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

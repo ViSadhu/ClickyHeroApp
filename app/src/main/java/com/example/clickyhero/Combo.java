@@ -1,11 +1,8 @@
 package com.example.clickyhero;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Combo {
+public class Combo implements Serializable {
 
     private int comboID;
     private String comboName;
@@ -47,7 +44,7 @@ public class Combo {
         this.sequence = sequence;
     }
 
-    public int getIsCompleted() {
+    public int isCompleted() {
         return isCompleted;
     }
 
@@ -55,7 +52,7 @@ public class Combo {
         this.isCompleted = isCompleted;
     }
 
-    public int getIsCorrect() {
+    public int isCorrect() {
         return isCorrect;
     }
 
