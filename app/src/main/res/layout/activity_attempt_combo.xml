@@ -27,67 +27,17 @@
             android:text="@string/combo_name"
             android:textSize="20sp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvArrows2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_weight="1"
+            android:layout_marginVertical="12dp"
+            tools:listitem="@layout/arrows_item">
 
-            <ImageView
-                android:id="@+id/ivArrow0"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow1"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow2"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow3"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow4"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow5"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow6"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-
-            <ImageView
-                android:id="@+id/ivArrow7"
-                android:layout_width="@android:dimen/app_icon_size"
-                android:layout_height="@android:dimen/app_icon_size"
-                android:layout_weight="0.125"
-                android:padding="4dp" />
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
     <ImageButton

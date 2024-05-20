@@ -52,30 +52,30 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<Combo> getAllCombos() {
-
-        ArrayList<Combo> allCombos = new ArrayList<>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor resultSet = db.query("tblCombos", null, null, null, null, null, null);
-
-        while (resultSet.moveToNext()) {
-
-            Combo combo = new Combo();
-
-            combo.setComboID(resultSet.getInt(0));
-            combo.setComboName(resultSet.getString(1));
-            combo.setSequence(resultSet.getString(2));
-            combo.setComboSize(resultSet.getInt(3));
-            combo.setIsCompleted(resultSet.getInt(4));
-            combo.setIsCorrect(resultSet.getInt(5));
-
-            allCombos.add(combo);
-        }
-
-        Collections.shuffle(allCombos);
-
-        return allCombos;
-    }
+//    public ArrayList<Combo> getAllCombos() {
+//
+//        ArrayList<Combo> allCombos = new ArrayList<>();
+//
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        Cursor resultSet = db.query("tblCombos", null, null, null, null, null, null);
+//
+//        while (resultSet.moveToNext()) {
+//
+//            Combo combo = new Combo();
+//
+//            combo.setComboID(resultSet.getInt(0));
+//            combo.setComboName(resultSet.getString(1));
+//            combo.setSequence(resultSet.getString(2));
+//            combo.setComboSize(resultSet.getInt(3));
+//            combo.setIsCompleted(resultSet.getInt(4));
+//            combo.setIsCorrect(resultSet.getInt(5));
+//
+//            allCombos.add(combo);
+//        }
+//
+//        Collections.shuffle(allCombos);
+//
+//        return allCombos;
+//    }
 }
