@@ -47,6 +47,9 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.comboViewHol
         else if (comboList.get(position).isCorrect() == 0) {
             holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.incorrect));
         }
+        else {
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.unattempted));
+        }
     }
 
     @Override

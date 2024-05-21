@@ -38,13 +38,7 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
 
         setContentView(R.layout.activity_launcher);
 
-        attempts = 0;
-        sharedPreferences = getSharedPreferences("stats", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("attempts", attempts);
-        editor.apply();
-
-        initializeList();
+        initialize();
 
         tvCorrectCombos = findViewById(R.id.tvCorrectCombos);
         tvCorrectCombos.setText(getString(R.string.correct_combos, correctCombos));
@@ -154,14 +148,21 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
         });
 
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
-            initializeList();
+            initialize();
             comboAdapter.notifyDataSetChanged();
         });
 
         alertDialog.show();
     }
 
-    public void initializeList() {
+    public void initialize() {
+
+        correctCombos = 0;
+        attempts = 0;
+        sharedPreferences = getSharedPreferences("stats", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("attempts", attempts);
+        editor.apply();
 
         ArrayList<Integer> sequence1 = new ArrayList<>(Arrays.asList(
                 R.drawable.right, R.drawable.right, R.drawable.up, R.drawable.right));
