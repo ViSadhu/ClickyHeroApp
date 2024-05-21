@@ -1,5 +1,7 @@
 package com.example.clickyhero;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,9 +23,10 @@ public class Attempt_Combo extends AppCompatActivity {
     ImageButton ibArrowDown;
     ImageButton ibArrowLeft;
     ImageButton ibArrowRight;
+    Combo receivedCombo;
     ArrayList<Integer> sequenceImages;
-    ArrayList<Integer> attempedSequence = new ArrayList<>();;
-    int numClicks = 0;
+    ArrayList<Integer> attempedSequence;;
+    private int numClicks = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +35,13 @@ public class Attempt_Combo extends AppCompatActivity {
 
         setContentView(R.layout.activity_attempt_combo);
 
+        attempedSequence = new ArrayList<>();
+
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
-        sequenceImages = bundle.getIntegerArrayList("comboSequence");
+        receivedCombo = (Combo) bundle.getSerializable("combo");
+        assert receivedCombo != null;
+        sequenceImages = receivedCombo.getSequenceImages();
         Log.d("Bundle", "sequenceImages: " + sequenceImages);
 
         rvArrows2 = findViewById(R.id.rvArrows2);
@@ -48,7 +55,7 @@ public class Attempt_Combo extends AppCompatActivity {
         ibArrowLeft = findViewById(R.id.ibArrowLeft);
         ibArrowRight = findViewById(R.id.ibArrowRight);
 
-        tvComboTitle.setText(bundle.getString("comboName"));
+        tvComboTitle.setText(receivedCombo.getComboName());
 
         ibArrowUp.setOnClickListener(ArrowClickListener(R.drawable.up));
         ibArrowDown.setOnClickListener(ArrowClickListener(R.drawable.down));
@@ -57,12 +64,28 @@ public class Attempt_Combo extends AppCompatActivity {
 
     }
 
-    private void checkSequence() {
+    private void checkSequenceAndQuit() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("stats", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isCompleted", true);
+
+        int attempts = sharedPreferences.getInt("attempts", 0);
+        editor.putInt("attempts", attempts + 1);
+
         if (attempedSequence.equals(sequenceImages)) {
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+
+            editor.putInt("isCorrect", 1);
+
         } else {
             Toast.makeText(this, "Incorrect!", Toast.LENGTH_SHORT).show();
+
+            editor.putInt("isCorrect", 0);
         }
+
+        editor.apply();
+        finish();
     }
 
     public View.OnClickListener ArrowClickListener(int arrow) {
@@ -72,7 +95,7 @@ public class Attempt_Combo extends AppCompatActivity {
             updateImageView(arrow, numClicks);
             numClicks++;
             if (numClicks == sequenceImages.size()) {
-                checkSequence();
+                checkSequenceAndQuit();
             }
         };
     }

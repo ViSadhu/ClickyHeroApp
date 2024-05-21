@@ -1,7 +1,5 @@
 package com.example.clickyhero;
 
-import android.media.Image;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,9 +9,10 @@ public class Combo implements Serializable {
     private ArrayList<Integer> sequenceImages;
     private String comboName;
     private int comboSize;
-    private int isCompleted;
+    private boolean isCompleted;
+    private int isCorrect;
 
-    public Combo(int comboID, String comboName, ArrayList<Integer> sequenceImages, int comboSize, int isCompleted, int isCorrect) {
+    public Combo(int comboID, String comboName, ArrayList<Integer> sequenceImages, int comboSize, boolean isCompleted, int isCorrect) {
         this.comboID = comboID;
         this.comboName = comboName;
         this.sequenceImages = sequenceImages;
@@ -38,8 +37,6 @@ public class Combo implements Serializable {
         this.comboSize = comboSize;
     }
 
-    private int isCorrect;
-
     public int getComboID() {
         return comboID;
     }
@@ -56,11 +53,11 @@ public class Combo implements Serializable {
         this.comboName = comboName;
     }
 
-    public int isCompleted() {
+    public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setIsCompleted(int isCompleted) {
+    public void setCompleted(boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
 

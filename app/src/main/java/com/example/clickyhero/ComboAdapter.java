@@ -1,5 +1,6 @@
 package com.example.clickyhero;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -15,10 +17,12 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.comboViewHol
     private final RecyclerViewClickListener recyclerViewClickListener;
     private final ArrayList<Combo> comboList;
     ArrowAdapter arrowAdapter;
+    Context context;
 
-    public ComboAdapter(ArrayList<Combo> comboList, RecyclerViewClickListener recyclerViewClickListener) {
+    public ComboAdapter(Context context, ArrayList<Combo> comboList, RecyclerViewClickListener recyclerViewClickListener) {
         this.comboList = comboList;
         this.recyclerViewClickListener = recyclerViewClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -37,6 +41,12 @@ public class ComboAdapter extends RecyclerView.Adapter<ComboAdapter.comboViewHol
         this.arrowAdapter = new ArrowAdapter(sequenceImages);
         holder.rvArrows.setAdapter(arrowAdapter);
 
+        if (comboList.get(position).isCorrect() == 1) {
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.correct));
+        }
+        else if (comboList.get(position).isCorrect() == 0) {
+            holder.itemView.setBackgroundColor(context.getResources().getColor(R.color.incorrect));
+        }
     }
 
     @Override

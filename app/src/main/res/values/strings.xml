@@ -4,4 +4,8 @@
     <string name="correct_combos">Correct Combos: %1$d</string>
     <string name="combo_name">Combo Name</string>
     <string name="reset">Reset</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="play_again">Play Again</string>
+    <string name="message1">You have successfully completed all the Combos!</string>
+    <string name="message2">Wow! You got %1$d combos right!</string>
 </resources>
