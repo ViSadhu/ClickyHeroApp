@@ -38,10 +38,9 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
 
         setContentView(R.layout.activity_launcher);
 
-        initialize();
-
         tvCorrectCombos = findViewById(R.id.tvCorrectCombos);
-        tvCorrectCombos.setText(getString(R.string.correct_combos, correctCombos));
+
+        initialize();
 
         rvCombos = findViewById(R.id.rvCombos);
         rvCombos.setLayoutManager(new LinearLayoutManager(LauncherActivity.this));
@@ -104,18 +103,18 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
         editor.remove("isCorrect");
         editor.apply();
 
-        if(updateList(id, currentCombo)) {
-            comboAdapter.notifyDataSetChanged();
-        }
+        int position = updateList(id, currentCombo);
+
+        if(position != -1)
+            comboAdapter.notifyItemChanged(position);
 
         attempts = sharedPreferences.getInt("attempts", 0);
 
-        if(attempts == 5) {
+        if(attempts == 5)
             showCongratulationsActivity();
-        }
     }
 
-    private boolean updateList(int id, Combo c) {
+    private int updateList(int id, Combo c) {
 
         if (id != -1) {
             for (Combo combo : comboList) {
@@ -123,11 +122,11 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
                     int position = comboList.indexOf(combo);
                     comboList.remove(position);
                     comboList.add(position, c);
-                    return true;
+                    return position;
                 }
             }
         }
-        return false;
+        return -1;
     }
 
     private void showCongratulationsActivity() {
@@ -158,7 +157,10 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
     public void initialize() {
 
         correctCombos = 0;
+        tvCorrectCombos.setText(getString(R.string.correct_combos, correctCombos));
+
         attempts = 0;
+
         sharedPreferences = getSharedPreferences("stats", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("attempts", attempts);

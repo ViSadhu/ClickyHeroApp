@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ArrowAdapter extends RecyclerView.Adapter<ArrowAdapter.ArrowViewHolder> {
-
-    private ArrayList<Integer> sequenceImages;
+    private final ArrayList<Integer> sequenceImages;
 
     public ArrowAdapter(ArrayList<Integer> sequenceImages) {
         this.sequenceImages = sequenceImages;
@@ -22,7 +21,7 @@ public class ArrowAdapter extends RecyclerView.Adapter<ArrowAdapter.ArrowViewHol
     @Override
     public ArrowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.arrows_item, parent, false);
-        return new ArrowAdapter.ArrowViewHolder(view);
+        return new ArrowViewHolder(view);
     }
 
     @Override
@@ -36,6 +35,7 @@ public class ArrowAdapter extends RecyclerView.Adapter<ArrowAdapter.ArrowViewHol
     }
     public static class ArrowViewHolder extends RecyclerView.ViewHolder {
         ImageView ivArrow = itemView.findViewById(R.id.ivArrow);
+
         public ArrowViewHolder(@NonNull View itemView) {
             super(itemView);
         }
