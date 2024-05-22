@@ -38,8 +38,10 @@ public class Attempt_Combo extends AppCompatActivity {
         attempedSequence = new ArrayList<>();
 
         Bundle bundle = getIntent().getExtras();
+
         assert bundle != null;
         receivedCombo = (Combo) bundle.getSerializable("combo");
+
         assert receivedCombo != null;
         sequenceImages = receivedCombo.getSequenceImages();
         Log.d("Bundle", "sequenceImages: " + sequenceImages);

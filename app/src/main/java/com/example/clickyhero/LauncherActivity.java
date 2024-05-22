@@ -60,7 +60,7 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
         int id = item.getItemId();
 
         if (id == R.id.btnReset) {
-            confirmReset();
+            confirmResetDialog();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -136,7 +136,7 @@ public class LauncherActivity extends AppCompatActivity implements RecyclerViewC
         startActivity(intent, intent.getExtras());
     }
 
-    private void confirmReset() {
+    private void confirmResetDialog() {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
