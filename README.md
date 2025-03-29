@@ -1,7 +1,7 @@
 
 # ClickyHeroApp
 
-ClickyHeroApp is an Android application designed as a clicker game where users tap the screen to earn points, defeat enemies, and unlock upgrades. The game is inspired by the popular incremental/clicker genre, providing an engaging and rewarding gameplay experience.
+ClickyHeroApp is an Android application designed to challenge users with a series of button tap sequences. Users are required to replicate the displayed sequences by tapping the appropriate buttons in the correct order. The game consists of predefined combinations of button presses, presented randomly. It features visual feedback for correct and incorrect inputs and includes a congratulatory screen upon successful completion of all sequences. Additionally, the app offers a restart option to randomize the order and reset progress.
 
 ## Features
 - **Button Tap Sequence Challenge:** Users are presented with a series of button tap sequences that they must repeat in the correct order.
